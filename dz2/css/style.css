@@ -1,0 +1,48 @@
+.cijena{
+	margin: 0%;
+}
+h2{	
+	margin: 0%;
+}
+.broj_recenzija{
+	margin: 0%;
+}
+.opis{
+	margin-bottom: 2%;
+}
+.proizvod{
+	float: left;
+	width: 40%;
+	height: 250px;
+	margin-top:2%;
+	margin-bottom: 2%;
+	margin-left:3%;
+	margin-right: 3%;
+	background-color: #E6E6FF;
+}
+.gumb{
+	margin-left: 1%;
+	float:right;
+	margin-top:2%;
+	border-radius: 15px;
+	box-shadow: 0 3px #999;
+	font-size: 24px;
+}
+.gumb:hover {
+    background-color: darkblue; /* Green */
+    color: white;
+}
+#naslov{
+	width: 80%;
+	float:left;
+}
+fieldset{
+	border: solid;
+	background: lightblue;
+}
+#upozorenje{
+	color:red;
+}
+.jedna_recenzija{
+	background-color: #E6E6FF;
+}

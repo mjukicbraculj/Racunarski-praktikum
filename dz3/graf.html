@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf8" />
+<title>DZ3 - Chart</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.js"></script>
+<script src="chart.js"></script>
+</head>
+<body>
+	<h2>Prvi primjer</h2>
+	<div class="chart" title="Hitman - 3840x2160 - Ultra Quality"
+		data-ylabel="Frames per second - Higher is better">
+		<div data-dataset="DX11">
+			<span data-value="47.8">NVIDIA GeForce GTX 1080</span>
+			<span data-value="43.7">AMD Radeon R9 Fury X</span>
+			<span data-value="34.7">NVIDIA GeForce GTX 980Ti</span>
+			<span data-value="32.6">AMD Radeon R9 290X "Uber"</span>
+			<span data-value="26.2">NVIDIA GeForce GTX 980</span>
+		</div>
+		<div data-dataset="DX12">
+			<span data-value="26.4">NVIDIA GeForce GTX 980</span>
+			<span data-value="34.1">NVIDIA GeForce GTX 980Ti</span>
+			<span data-value="46.8">NVIDIA GeForce GTX 1080</span>
+			<span data-value="44.2">AMD Radeon R9 Fury X</span>
+			<span data-value="33.6">AMD Radeon R9 290X "Uber"</span>
+		</div>
+		
+		
+	</div>
+	<h2>Drugi primjer</h2>
+	<div class="chart" title="Europski parlamentarni izbori"
+		data-xlabel="Grupe" data-ylabel="Seats">
+		<div data-dataset="1999">
+			<span data-value="50">EUL</span>
+			<span data-value="210">PES</span>
+			<span data-value="55">EFA</span>
+		</div>
+		<div data-dataset="2004">
+			<span data-value="200">PES</span>
+			<span data-value="48">EUL</span>
+			<span data-value="48">EFA</span>
+		</div>
+		
+		
+	</div>
+	</body>
+</html>

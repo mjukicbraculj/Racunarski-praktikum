@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.js"></script>
+    <meta charset="UTF-8">
+  <head>
+
+  <body>
+    <p> Odaberi polazni grad:</p>
+    <button class="start">Zagreb</button>
+    <button class="start">Split</button>
+    <button class="start">Rijeka</button>
+    <button class="start">Osijek</button>
+
+
+
+    <script>
+
+    $(document).ready(function(){
+      $(".start").on("click", function(){
+        $(this).css("background-color", "yellow");
+        var start = $(this).html();
+        console.log(start);
+        $.ajax({
+          url:"zadatak2.php",
+          data:{
+            start: start
+          },
+          type: "get",
+          datatype: "json",
+          success: function(data){
+            console.log("uspjeh" + data);
+            data = JSON.parse(data);
+            $("body").append("<p>Odaberi ciljni grad:<p>");
+            for(var i = 0; i < data.length; ++i){
+              var button = $("<button class='cilj'>" + data[i] + "</button> ");
+              button.on("click", {start: start}, dohvatiVremena);
+              $("body").append(button);
+            }
+          },
+          error: function(status){
+            console.log(status);
+          }
+        });
+      });
+    });
+
+    function dohvatiVremena(event){
+      $(this).css("background-color", "yellow");
+      start = event.data.start;
+      var cilj = $(this).html();
+      $.ajax({
+        url:"zadatak2.php",
+        data:{
+          start: start,
+          cilj: cilj
+        },
+        type: "get",
+        datatype: "json",
+        success: function(data){
+          console.log("uspjeh" + data);
+          data = JSON.parse(data);
+          $("body").append("<p>Odaberi vrijeme polaska:<p>");
+          for(var i = 0; i < data.length; ++i){
+            var button = $("<button class='cilj'>" + data[i]["polazak"] + "<br/>" + data[i]["cijena"] + "</button> ");
+            button.on("click", {start: start, cilj: cilj }, function(event){
+              $(this).css("background-color", "yellow");
+              var str = $(this).html();
+              var gdje = str.indexOf("h");
+              console.log(gdje);
+              var sat = str.substring(0, gdje+1);
+              var cijena = str.substring(gdje+5, str.length)
+              alert("Odabrali ste vlak od " + event.data.start + " do " + event.data.cilj  + " koji polazi u " + sat + " i kosta " +  cijena + " kuna" );
+            });
+            $("body").append(button);
+          }
+        },
+        error: function(status){
+          console.log(status);
+        }
+      });
+    }
+
+
+    </script>
+
+  </body>
+
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.js"></script>
+    <meta charset="UTF-8">
+  <head>
+
+  <body>
+    Broj redaka: <input type="text" id="reci"></br>
+    Broj stupaca: <input type="text" id="stupci"></br>
+    <button>Crtaj</button>
+  </br>
+  </br>
+    <canvas height="500" width="500" id="cnv" style="border:solid">
+      Ovo se prikaze ako canvas nije podrzan.
+    </canvas>
+    <p> </p>
+    <script>
+
+      $(document).ready(function(){
+        $("button").on("click", crtajMrezu);
+
+
+      });
+
+      function crtajMrezu(){
+        var canvas = $("#cnv");
+        var ctx = canvas.get(0).getContext("2d");
+        var visina = canvas.height();
+        var sirina = canvas.width();
+        ctx.clearRect(0, 0, visina, sirina);
+        console.log(visina + ", " + sirina);
+        var yn = $("#reci").val();
+        var xn = $("#stupci").val();
+        console.log(xn + ", " + yn);
+        if(xn > 20 || yn > 20 || xn < 1 || yn < 1){
+          alert("dimenzije redaka i stupaca nisu dobre");
+          $("p").html("");
+        }
+        else{
+            pom_x = sirina/xn;
+            pom_y = visina/yn;
+            console.log(pom_x + ", " + pom_y);
+            for(var i = 0; i < xn; ++i){
+              console.log(i + ", " + pom_x*(i+1))
+              ctx.beginPath();
+              ctx.moveTo(pom_x*(i+1), 0);
+              ctx.lineTo(pom_x*(i+1), 500);
+              ctx.stroke();
+            }
+            for(var i = 0; i < yn; ++i){
+              console.log(i + ", " + pom_y*(i+1))
+              ctx.beginPath();
+              ctx.moveTo(0, pom_y*(i+1));
+              ctx.lineTo(500, pom_y*(i+1));
+              ctx.stroke();
+            }
+
+            var boje = ["blue", "red"];
+            var brojac = 0;
+            $("p").html("obojano je " + brojac + " polja");
+            canvas.on("mousedown", function(event){
+              var rect = this.getBoundingClientRect();
+              var x = event.clientX - rect.left, y = event.clientY - rect.top;
+              console.log("klik na canvas na mjestu " + x + ", " + y);
+              koliko_x = parseInt(x/pom_x);
+              koliko_y = parseInt(y/pom_y);
+              console.log(koliko_x + ", " + koliko_y);
+              ctx.fillStyle = boje[brojac%2];
+              ctx.fillRect(koliko_x * pom_x, koliko_y * pom_y, pom_x, pom_y);
+              brojac++;
+              $("p").html("obojano je " + brojac + " polja");
+
+            });
+
+        }
+
+      }
+
+
+
+
+    </script>
+
+  </body>
+
+</html>
